@@ -1,23 +1,38 @@
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Column() {
+      Column() {
+        Row() {
+          Text('11:04')
+            .width('30%')
+            .margin({left: '10%', top: '3%'})
+          Text('BOSS 直聘')
+            .margin({right: 20})
+          Text()
+            .width('50%')
+        }
+        .justifyContent(FlexAlign.Start)
+        Row() {
+          Text('鸿蒙开发工程师')
+          Button()
+          Button()
+        }
+        .width("100%")
+        .justifyContent(FlexAlign.Start)
+        .margin({top: '3%'})
+        Row() {
+          Button('推荐')
+          Button('附近')
+          Button('最新')
+          Text('北京')
+          Text('筛选')
+        }
+        .width('100%')
+      }
+      .width('100%')
+      .height('20%')
     }
-    .height('100%')
-    .width('100%')
   }
 }
