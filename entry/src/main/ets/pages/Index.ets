@@ -1,6 +1,8 @@
 @Entry
 @Component
 struct Index {
+  private controller: TabsController = new TabsController();
+  @State arr: Array<string> = ['1','2','3','4','5','6'];
   build() {
     Column() {
       Column() {
@@ -9,7 +11,6 @@ struct Index {
             .width('30%')
             .margin({left: '10%', top: '3%'})
           Text('BOSS 直聘')
-            .margin({right: 20})
           Text()
             .width('50%')
         }
@@ -23,9 +24,9 @@ struct Index {
         .justifyContent(FlexAlign.Start)
         .margin({top: '3%'})
         Row() {
-          Button('推荐')
-          Button('附近')
-          Button('最新')
+          Text('推荐')
+          Text('附近')
+          Text('最新')
           Text('北京')
           Text('筛选')
         }
@@ -33,6 +34,54 @@ struct Index {
       }
       .width('100%')
       .height('20%')
+
+      Column() {
+
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text(item.toString())
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .size({ height: 100, width: "100%" })
+            }.margin(10)
+            .borderRadius(10)
+            .backgroundColor("#FFFFFFFF")
+          }, (item: string) => item)
+            .onMove((from: number, to: number) => {
+              // 以下两行代码是为了确保拖拽后屏幕上组件的顺序与数组arr中每一项的顺序保持一致。
+              // 若注释以下两行，第一步拖拽排序，第二步在arr末尾插入一项，触发ForEach渲染，此时屏上组件的顺序会跟数组arr中每一项的顺序一致，而不是维持第一步拖拽后的顺序，意味着拖拽排序在ForEach渲染后失效了。
+              let tmp = this.arr.splice(from, 1);
+              this.arr.splice(to, 0, tmp[0]);
+            })
+        }
+      }
+      .width('100%')
+      .height('75%')
+      .backgroundColor('#F6F5F6')
+
+      Column(){
+        Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+
+          TabContent() {
+          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
+
+          TabContent() {
+          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
+
+          TabContent() {
+          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
+
+          TabContent() {
+          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
+        }
+        .backgroundColor(Color.Blue)
+        .width('100%')
+        .height('100%')
+      }
+      .width('100%')
+      .height('8%')
+      .backgroundColor(Color.Black)
     }
   }
 }
