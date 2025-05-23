@@ -1,10 +1,15 @@
+import { Font } from '@kit.ArkUI';
+import { MyTab } from './TabContent'
+
 @Entry
 @Component
 struct Index {
   private controller: TabsController = new TabsController();
   @State arr: Array<string> = ['1','2','3','4','5','6'];
   build() {
+    // 总体布局
     Column() {
+      // 顶部总体布局
       Column() {
         Row() {
           Text('11:04')
@@ -35,6 +40,7 @@ struct Index {
       .width('100%')
       .height('20%')
 
+      // 中间
       Column() {
 
         List() {
@@ -60,28 +66,17 @@ struct Index {
       .height('75%')
       .backgroundColor('#F6F5F6')
 
+      // 底部标签栏
       Column(){
-        Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
-
-          TabContent() {
-          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
-
-          TabContent() {
-          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
-
-          TabContent() {
-          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
-
-          TabContent() {
-          }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'),'test'))
-        }
-        .backgroundColor(Color.Blue)
-        .width('100%')
-        .height('100%')
+        MyTab()
       }
-      .width('100%')
       .height('8%')
-      .backgroundColor(Color.Black)
+      .width('100%')
+      .backgroundColor(Color.Brown)
+
+
     }
+    .height('100%')
+    .width('100%')
   }
 }
