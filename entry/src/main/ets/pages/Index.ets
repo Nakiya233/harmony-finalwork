@@ -12,7 +12,7 @@ struct Index {
 
       // 顶部总体布局
       Column() {
-        Row() {
+        Stack() {
           Row(){
             Text('11:04')
               .width('30%')
@@ -23,19 +23,25 @@ struct Index {
               .fontWeight(FontWeight.Bold)
               .margin({ bottom: 20 })
           }
+          .width('100%')
+          .height('100%')
+          .linearGradient({
+            angle: 180, // 从上到下
+            colors: [['#00FFFFFF', 0], ['#FFFFFF', 1]]
+          })
 
           Text()
             .width('50%')
         }
         .height('40%')
-        .justifyContent(FlexAlign.Start)
+        .width('100%')
         .backgroundColor(Color.Grey)
         .linearGradient({
-          angle: 180,
+          // 0点方向顺时针旋转为正向角度，线性渐变起始角度的默认值为180°
+          angle: 90,
           colors: [
-            ['#8AE1E1', 0],
-            // ['#FFD0C3', 0.7],
-            ['#FFFFFF', 1]
+            [0x51C7C7, 0.0], // 颜色断点1的颜色和比重，对应组件在方向上的起始位置
+            [0xffccbe, 1.0],// 颜色断点2的颜色和比重，对应组件在方向上的终点位置
           ]
         })
 

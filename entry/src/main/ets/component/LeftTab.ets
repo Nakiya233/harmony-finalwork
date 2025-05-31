@@ -136,10 +136,10 @@ struct LeftTab {
                         ForEach(item.tags, (tag: string, index: number) => {
                           Text(tag)
                             .fontColor(this.itemFontColor)
-                            .backgroundColor('#ffefefef')
+                            .backgroundColor('#fff5f3f3')
                             .borderRadius(2)
                             .width('17%')
-                            .height('15%')
+                            .height('17%')
                             .textOverflow({ overflow: TextOverflow.Ellipsis })
                             .textAlign(TextAlign.Center)
                             .wordBreak(2)
